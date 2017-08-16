@@ -1,21 +1,14 @@
-Upgrading to Edge
------------------
+# Upgrading to Edge
 
-If you're an experienced Refinery developer you might want to live on
-the edge. This guide will show you how to:
+If you're an experienced Refinery developer you might want to live on the edge. This guide will show you how to:
 
--   Keep your existing Refinery installation on the edge version
+* Keep your existing Refinery installation on the edge version
 
-endprologue.
-
-WARNING: This tutorial is only for advanced Refinery users who are used
-to continuous integration with Refinery. This will overwrite files so
-make sure you have a backup or have your current code committed to a
-remote git repository.
+__WARNING__: This tutorial is only for advanced Refinery users who are used to continuous integration with Refinery. This will overwrite files so make sure you have a backup or have your current code committed to a remote git repository.
 
 Here are the basic steps:
 
-### Upgrade your current application
+## Upgrade your current application
 
 Replace the line that looks like this:
 
@@ -26,18 +19,15 @@ gem 'refinerycms'
 With a line that looks like this:
 
 ```ruby
-gem 'refinerycms', git: 'https://github.com/refinery/refinerycms',
-branch: 'master'
+gem 'refinerycms', git: 'https://github.com/refinery/refinerycms', branch: 'master'
 ```
 
-Now, inside the application's directory, use the refinerycms generator
-to update your application:
+Now, inside the application's directory, use the refinerycms generator to update your application:
 
 ```shell
-$ bin/rails generate refinery:cms --update
+bin/rails generate refinery:cms --update
 ```
 
-### Solve any deprecation problems.
+## Solve any deprecation problems.
 
-Look at your log when running you app to make sure nothing has been
-deprecated. If there are some, fix the issues.
+Look at your log when running you app to make sure nothing has been deprecated. If there are some, fix the issues.
