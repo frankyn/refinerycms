@@ -2,7 +2,7 @@
 
 Refinery offers a generator which allows an engine/model to have fields which are single images. It doesn't supply anything out-of-the-box to allow a model to have a collection of images.
 
-However Refinery has a plugin *Refinerycms-page-images* which implements an image collection for the *Refinery::Page* model.
+However Refinery has a plugin `refinerycms-page-images` which implements an image collection for the `Refinery::Page` model.
 
 It is relatively straight-forward to use this plugin to add an image collection to your model.
 
@@ -10,40 +10,40 @@ It is relatively straight-forward to use this plugin to add an image collection 
 
 ## What you get
 
-When you have completed these steps your model/engine you will be able to add and remove images from an instance of your model using the same tabbed interface used by *Refinery::Pages*.
+When you have completed these steps your model/engine you will be able to add and remove images from an instance of your model using the same tabbed interface used by `Refinery::Pages`.
 
-In a view you will have access to a collection of images (*@model.images*).
+In a view you will have access to a collection of images (`@model.images`).
 
-### Pre-requisites
+## Pre-requisites
 
--   Refinerycms
--   Refinerycms-page-images
--   an engine or extension to work with (the examples will use `Shows`)
+* Refinerycms
+* Refinerycms-page-images
+* an engine or extension to work with (the examples will use `Shows`)
 
-### Configure Refinerycms-page-images
+## Configure refinerycms-page-images
 
-Edit the config file *app/config/initializers/refinery/page/images.rb*:
+Edit the config file `app/config/initializers/refinery/page/images.rb`:
 
 ```ruby
 Refinery::PageImages.configure do |config|
   config.captions = true
 
   config.enable_for = [
-    {model: "Refinery::Page", tab: "Refinery::Pages::Tab"},
-    {model: "Refinery::Show", tab: "Refinery::Shows::Tab"}
+    { model: "Refinery::Page", tab: "Refinery::Pages::Tab" },
+    { model: "Refinery::Show", tab: "Refinery::Shows::Tab" }
   ]
 
   config.wysiwyg = true
 end
 ```
 
-### Add page-images to your model
+## Add page-images to your model
 
-Add *has_many_page_images* line to the model in *vendor/extensions/shows/app/models/refinery/shows/show.rb*.
+Add `has_many_page_images` line to the model in `vendor/extensions/shows/app/models/refinery/shows/show.rb`.
 
-### Define Tabs
+## Define Tabs
 
-Create the tab class in *vendor/extensions/shows/lib/refinery/shows/tabs.rb*:
+Create the tab class in `vendor/extensions/shows/lib/refinery/shows/tabs.rb`:
 
 ```ruby
 module Refinery
@@ -70,9 +70,9 @@ module Refinery
 end
 ```
 
-### Load and Initialize Tabs
+## Load and Initialize Tabs
 
-Edit the file *vendor/extensions/shows/lib/refinery/shows.rb*:
+Edit the file `vendor/extensions/shows/lib/refinery/shows.rb`:
 
 ```ruby
 require 'refinerycms-core'
@@ -105,11 +105,11 @@ module Refinery
 end
 ```
 
-### Modify the admin view
+## Modify the admin view
 
-TIP: You may add custom fields like *blurb* and add the support inside the *form_part* partial.
+__TIP__: You may add custom fields like `blurb` and add the support inside the `form_part` partial.
 
-Add a new field to the form in *vendor/extensions/shows/app/views/refinery/admin/_form.html.erb*:
+Add a new field to the form in `vendor/extensions/shows/app/views/refinery/admin/_form.html.erb`:
 
 ```erb
 <div class='field'>
@@ -140,7 +140,7 @@ Add a new field to the form in *vendor/extensions/shows/app/views/refinery/admin
 </div>
 ```
 
-Create the *form_part* partial in *vendor/extensions/shows/app/views/refinery/admin/_form_part.html.erb*:
+Create the `form_part` partial in `vendor/extensions/shows/app/views/refinery/admin/_form_part.html.erb`:
 
 ```erb
 <div class='page_part' id='page_part_blurb'>
@@ -148,11 +148,11 @@ Create the *form_part* partial in *vendor/extensions/shows/app/views/refinery/ad
 </div>
 ```
 
-### Add strong parameters for the new fields
+## Add strong parameters for the new fields
 
-#### Write a decorator
+### Write a decorator
 
-Create the decorator in *vendor/extensions/shows/app/decorators/controllers/refinery/admin/shows_controller_decorator.rb*:
+Create the decorator in `vendor/extensions/shows/app/decorators/controllers/refinery/admin/shows_controller_decorator.rb`:
 
 ```ruby
 Refinery::Shows::Admin::ShowsController.prepend(
@@ -164,11 +164,11 @@ Refinery::Shows::Admin::ShowsController.prepend(
 )
 ```
 
-#### Tell the Controller to Permit the new parameters it must handle
+### Tell the Controller to Permit the new parameters it must handle
 
-TIP: It doesn't change the controller itself, but makes it easier to extend the initial list of permitted fields. Later versions of Refinery may generate this automatically.
+__TIP__: It doesn't change the controller itself, but makes it easier to extend the initial list of permitted fields. Later versions of Refinery may generate this automatically.
 
-Edit the controller *vendor/extensions/shows/app/controllers/refinery/shows/admin/shows_controller.rb*:
+Edit the controller `vendor/extensions/shows/app/controllers/refinery/shows/admin/shows_controller.rb`:
 
 ```ruby
 module Refinery
@@ -195,9 +195,9 @@ module Refinery
 end
 ```
 
-### Add captions
+## Add captions
 
-Create the model decorator and define images collection with captions in *vendor/extensions/shows/app/decorators/models/refinery/show_decorator.rb*
+Create the model decorator and define images collection with captions in `vendor/extensions/shows/app/decorators/models/refinery/show_decorator.rb`:
 
 ```ruby
 require 'ostruct'
@@ -218,4 +218,4 @@ Refinery::Shows::Show.class_eval do
 end
 ```
 
-TIP: See further usage [here](https://github.com/refinery/refinerycms-page-images#usage).
+__TIP__: See further usage [here](https://github.com/refinery/refinerycms-page-images#usage).
