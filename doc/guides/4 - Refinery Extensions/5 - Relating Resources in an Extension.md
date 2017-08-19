@@ -93,13 +93,13 @@ Run the commands listed above to actually create your files and migrate the data
 Since we've already created the `Event` model (as part of the "Multiple Resources…" guide), we'll have to manually add the`event_type_id` column to the `refinery_events` table:
 
 ```shell
-rails generate migration AddEventTypeToRefineryEvents event_type_id:integer
+$ rails generate migration AddEventTypeToRefineryEvents event_type_id:integer
 ```
 
 invoke active_record create db/migrate/20130409125232_add_event_type_to_refinery_events.rb
 
 ```shell
-rake db:migrate
+$ rake db:migrate
 ```
 
 ## Linking the models in our engine
