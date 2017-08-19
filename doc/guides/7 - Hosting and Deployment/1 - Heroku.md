@@ -46,21 +46,19 @@ If you have already built a Refinery application locally, you'll need to make so
 
 You don't have to change your local database settings to use PostgreSQL, but Heroku depends on the presence of the `pg` gem. So, in your Gemfile, change:
 
-```shell
-gem 'sqlite3' # or whatever the database driver for your local database is
-```
+
+    gem 'sqlite3' # or whatever the database driver for your local database is
+
 
 to:
 
-```shell
-group :development, :test do
-  gem 'sqlite3'
-end
+    group :development, :test do
+      gem 'sqlite3'
+    end
 
-group :production do
-  gem 'pg'
-end
-```
+    group :production do
+      gem 'pg'
+    end
 
 __WARNING__: Using differing databases for development and production is not recommended. Occasionally, specific Rails idioms may have different effects on different databases. We encourage you to set up and develop on PostgreSQL if you intend to deploy your application to Heroku.
 
