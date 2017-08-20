@@ -31,6 +31,7 @@ module Refinery
           if ::Refinery::Images.s3_backend
             require 'dragonfly/s3_data_store'
             options = {
+              url_host: "storage.googleapis.com/#{Refinery::Images.s3_bucket_name}",
               bucket_name: Refinery::Images.s3_bucket_name,
               access_key_id: Refinery::Images.s3_access_key_id,
               secret_access_key: Refinery::Images.s3_secret_access_key
